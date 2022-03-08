@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roommoviemvvm.R
 import com.example.roommoviemvvm.databinding.CategoryItemBinding
-import com.example.roommoviemvvm.models.CategoryModel
+import com.example.roommoviemvvm.data.models.CategoryModel
 
 class CategoryAdapter(private val deleteCategory:(CategoryModel)->Unit,
                       private val editCategory:(CategoryModel)->Unit): RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {

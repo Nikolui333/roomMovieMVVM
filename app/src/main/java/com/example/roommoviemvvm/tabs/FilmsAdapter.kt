@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.roommoviemvvm.models.FilmsModel
+import com.example.roommoviemvvm.data.models.FilmsModel
 import com.example.roommoviemvvm.R
 import com.example.roommoviemvvm.databinding.FilmItemBinding
 

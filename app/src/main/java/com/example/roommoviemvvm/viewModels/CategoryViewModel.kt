@@ -2,8 +2,8 @@ package com.example.roommoviemvvm.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.roommoviemvvm.models.CategoryModel
-import com.example.roommoviemvvm.repositories.CategoryRepository
+import com.example.roommoviemvvm.data.models.CategoryModel
+import com.example.roommoviemvvm.data.repositories.CategoryRepository
 
 import kotlinx.coroutines.launch
 

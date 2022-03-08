@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.roommoviemvvm.R
-import com.example.roommoviemvvm.data.MovieDatabase
+import com.example.roommoviemvvm.data.db.MovieDatabase
 import com.example.roommoviemvvm.databinding.FragmentPanelEditCategoryBinding
-import com.example.roommoviemvvm.repositories.CategoryRepository
+import com.example.roommoviemvvm.data.repositories.CategoryRepository
 import com.example.roommoviemvvm.viewModels.CategoryFactory
 import com.example.roommoviemvvm.viewModels.CategoryViewModel
 

@@ -3,8 +3,8 @@ package com.example.roommoviemvvm.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.roommoviemvvm.models.FilmsModel
-import com.example.roommoviemvvm.repositories.FilmsRepository
+import com.example.roommoviemvvm.data.models.FilmsModel
+import com.example.roommoviemvvm.data.repositories.FilmsRepository
 
 import kotlinx.coroutines.launch
 

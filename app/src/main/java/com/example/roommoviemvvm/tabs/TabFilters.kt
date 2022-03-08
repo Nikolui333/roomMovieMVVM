@@ -10,10 +10,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.roommoviemvvm.R
-import com.example.roommoviemvvm.data.MovieDatabase
+import com.example.roommoviemvvm.data.db.MovieDatabase
 import com.example.roommoviemvvm.databinding.FragmentTabFiltersBinding
-import com.example.roommoviemvvm.models.FilmsModel
-import com.example.roommoviemvvm.repositories.FilmsRepository
+import com.example.roommoviemvvm.data.models.FilmsModel
+import com.example.roommoviemvvm.data.repositories.FilmsRepository
 import com.example.roommoviemvvm.viewModels.FilmsFactory
 import com.example.roommoviemvvm.viewModels.FilmsViewModel
 import androidx.lifecycle.Observer
@@ -59,11 +59,11 @@ class TabFilters : Fragment() {
         })
     }
 
-    private fun deleteFilm(filmModel:FilmsModel) {
+    private fun deleteFilm(filmModel: FilmsModel) {
         filmViewModel?.deleteFilm(filmModel)
     }
 
-    private fun editFilm(filmsModel:FilmsModel) {
+    private fun editFilm(filmsModel: FilmsModel) {
         val panelEditFilm = PanelEditFilm()
         val parameters = Bundle()
         parameters.putString("idFilm", filmsModel.id.toString())

@@ -10,10 +10,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.roommoviemvvm.R
-import com.example.roommoviemvvm.data.MovieDatabase
+import com.example.roommoviemvvm.data.db.MovieDatabase
 import com.example.roommoviemvvm.databinding.FragmentTabCategoriesBinding
-import com.example.roommoviemvvm.models.CategoryModel
-import com.example.roommoviemvvm.repositories.CategoryRepository
+import com.example.roommoviemvvm.data.models.CategoryModel
+import com.example.roommoviemvvm.data.repositories.CategoryRepository
 import com.example.roommoviemvvm.viewModels.CategoryFactory
 import com.example.roommoviemvvm.viewModels.CategoryViewModel
 import androidx.lifecycle.Observer
@@ -65,11 +65,11 @@ class TabCategories : Fragment()  {
     }
 
 
-    private fun deleteCategory(categoryModel:CategoryModel) {
+    private fun deleteCategory(categoryModel: CategoryModel) {
         categoryViewModel?.delete(categoryModel)
     }
 
-    private fun editCategory(categoryModel:CategoryModel) {
+    private fun editCategory(categoryModel: CategoryModel) {
         val panelCategory = PanelEditCategory()
         val parameters = Bundle()
         parameters.putString("idCategory", categoryModel.id.toString())

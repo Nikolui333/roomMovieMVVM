@@ -1,11 +1,11 @@
-package com.example.roommoviemvvm.data
+package com.example.roommoviemvvm.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.roommoviemvvm.models.CategoryModel
-import com.example.roommoviemvvm.models.FilmsModel
+import com.example.roommoviemvvm.data.models.CategoryModel
+import com.example.roommoviemvvm.data.models.FilmsModel
 
 
 @Database(entities = [CategoryModel::class, FilmsModel::class],version = 1)
@@ -17,7 +17,7 @@ abstract class MovieDatabase: RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE : MovieDatabase? = null
-        fun getInstance(context: Context):MovieDatabase{
+        fun getInstance(context: Context): MovieDatabase {
             synchronized(this){
                 var instance = INSTANCE
                 if(instance==null){

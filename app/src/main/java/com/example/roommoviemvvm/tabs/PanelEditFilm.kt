@@ -2,7 +2,6 @@ package com.example.roommoviemvvm.tabs
 
 import android.os.Bundle
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.roommoviemvvm.R
-import com.example.roommoviemvvm.data.MovieDatabase
+import com.example.roommoviemvvm.data.db.MovieDatabase
 import com.example.roommoviemvvm.databinding.FragmentPanelEditFilmBinding
-import com.example.roommoviemvvm.repositories.FilmsRepository
+import com.example.roommoviemvvm.data.repositories.FilmsRepository
 import com.example.roommoviemvvm.viewModels.FilmsFactory
 import com.example.roommoviemvvm.viewModels.FilmsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -33,10 +32,10 @@ class PanelEditFilm : BottomSheetDialogFragment(),View.OnKeyListener, View.OnCli
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_panel_edit_film, container, false)
 
-        idProduct = arguments?.getString("idProduct")?.toInt()
-        binding?.editNameFilm?.setText(arguments?.getString("nameProduct").toString())
-        binding?.editCategoryFilm?.setText(arguments?.getString("categoryProduct").toString())
-        binding?.editDurationFilm?.setText(arguments?.getString("priceProduct").toString())
+        idProduct = arguments?.getString("idFilm")?.toInt()
+        binding?.editNameFilm?.setText(arguments?.getString("nameFilm").toString())
+        binding?.editCategoryFilm?.setText(arguments?.getString("categoryFilm").toString())
+        binding?.editDurationFilm?.setText(arguments?.getString("priceFilm").toString())
 
 
         val productDao = MovieDatabase.getInstance((context as FragmentActivity).application).filmsDAO

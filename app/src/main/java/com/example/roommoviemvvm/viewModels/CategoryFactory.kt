@@ -3,7 +3,7 @@ package com.example.roommoviemvvm.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.roommoviemvvm.viewModels.CategoryViewModel
-import com.example.roommoviemvvm.repositories.CategoryRepository
+import com.example.roommoviemvvm.data.repositories.CategoryRepository
 
 class CategoryFactory (private val categoryRepository: CategoryRepository): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
