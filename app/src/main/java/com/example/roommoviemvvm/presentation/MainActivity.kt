@@ -1,14 +1,15 @@
-package com.example.roommoviemvvm
+package com.example.roommoviemvvm.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import com.example.roommoviemvvm.R
 import com.example.roommoviemvvm.databinding.ActivityMainBinding
-import com.example.roommoviemvvm.tabs.TabCategories
-import com.example.roommoviemvvm.tabs.TabFilms
-import com.example.roommoviemvvm.tabs.TabFilters
-import com.example.roommoviemvvm.tabs.TabPanel
+import com.example.roommoviemvvm.presentation.tabs.TabCategories
+import com.example.roommoviemvvm.presentation.tabs.TabFilms
+import com.example.roommoviemvvm.presentation.tabs.TabFilters
+import com.example.roommoviemvvm.presentation.tabs.TabPanel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +35,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.panelItemBottomNav -> supportFragmentManager.beginTransaction().replace(R.id.content, TabPanel()).commit()
             R.id.catalogProductsItemBottomNav -> supportFragmentManager.beginTransaction().replace(R.id.content, TabFilms()).commit()
             R.id.catalogClothesItemBottomNav -> supportFragmentManager.beginTransaction().replace(R.id.content, TabFilters()).commit()
-            R.id.catalogCategoriesItemBottomNav -> supportFragmentManager.beginTransaction().replace(R.id.content, TabCategories()).commit()
+            R.id.catalogCategoriesItemBottomNav -> supportFragmentManager.beginTransaction().replace(
+                R.id.content, TabCategories()
+            ).commit()
         }
 
         return true

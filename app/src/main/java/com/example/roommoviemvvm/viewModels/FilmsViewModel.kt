@@ -5,16 +5,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.roommoviemvvm.data.models.FilmsModel
 import com.example.roommoviemvvm.data.repositories.FilmsRepository
+import com.example.roommoviemvvm.domain.useCase.FilmsUseCase
 
 import kotlinx.coroutines.launch
 
-class FilmsViewModel (private val filmRepository: FilmsRepository) : ViewModel() {
+class FilmsViewModel (private val filmUseCase: FilmsUseCase) : ViewModel() {
 
-    val films = filmRepository.films
+    val films = filmUseCase.loadFilms()
 
     fun getFilter (nameCategory:String, durationFilm:String):
             LiveData<List<FilmsModel>> {
-        return filmRepository.getFilter(nameCategory, durationFilm)
+        return filmUseCase.getFilter(nameCategory, durationFilm)
     }
 
     fun startInsert(nameFilm:String, categoryFilm:String, durationFilm:String) {
@@ -27,21 +28,21 @@ class FilmsViewModel (private val filmRepository: FilmsRepository) : ViewModel()
 
     fun insertFilm(filmsModel: FilmsModel) = viewModelScope.launch{
 
-        filmRepository.insertFilm(filmsModel)
+        filmUseCase.insertFilm(filmsModel)
     }
 
     fun updateFilm(filmsModel: FilmsModel) = viewModelScope.launch{
 
-        filmRepository.updateFilm(filmsModel)
+        filmUseCase.updateFilm(filmsModel)
     }
 
     fun deleteFilm(filmsModel: FilmsModel) = viewModelScope.launch{
 
-        filmRepository.deleteFilm(filmsModel)
+        filmUseCase.deleteFilm(filmsModel)
     }
 
     fun deleteAllFilms() = viewModelScope.launch{
 
-        filmRepository.deleteAllFilms()
+        filmUseCase.deleteAllFilms()
     }
 }

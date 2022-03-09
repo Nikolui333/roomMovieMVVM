@@ -1,4 +1,4 @@
-package com.example.roommoviemvvm.tabs
+package com.example.roommoviemvvm.presentation.tabs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,15 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.roommoviemvvm.R
 import com.example.roommoviemvvm.data.db.MovieDatabase
-import com.example.roommoviemvvm.databinding.FragmentTabFilmsBinding
+import com.example.roommoviemvvm.databinding.FragmentTabFiltersBinding
 import com.example.roommoviemvvm.data.models.FilmsModel
 import com.example.roommoviemvvm.data.repositories.FilmsRepository
 import com.example.roommoviemvvm.viewModels.FilmsFactory
 import com.example.roommoviemvvm.viewModels.FilmsViewModel
 import androidx.lifecycle.Observer
 
-class TabFilms : Fragment() {
-    private var binding: FragmentTabFilmsBinding? = null
+class TabFilters : Fragment() {
+    private var binding: FragmentTabFiltersBinding? = null
     private var filmRepository: FilmsRepository? = null
     private var filmViewModel: FilmsViewModel? = null
     private var filmFactory: FilmsFactory? = null
@@ -30,32 +30,30 @@ class TabFilms : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tab_films, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tab_filters, container, false)
 
-        val filmDao = MovieDatabase.getInstance((context as FragmentActivity).application).filmsDAO
-        filmRepository = FilmsRepository(filmDao)
+        val filmsDao = MovieDatabase.getInstance((context as FragmentActivity).application).filmsDAO
+        filmRepository = FilmsRepository(filmsDao)
         filmFactory = FilmsFactory(filmRepository!!)
         filmViewModel = ViewModelProvider(this, filmFactory!!).get(FilmsViewModel::class.java)
-        initRecyclerFilms()
+        initRecyclerFilterFilms()
 
-        val onClickListener = binding?.deleteAllFilms?.setOnClickListener(View.OnClickListener {
-            filmViewModel?.deleteAllFilms()
-        })
+
 
         return binding?.root
     }
 
-    private fun initRecyclerFilms(){
-        binding?.recyclerFilms?.layoutManager = LinearLayoutManager(context)
+    private fun initRecyclerFilterFilms(){
+        binding?.recyclerFilter?.layoutManager = LinearLayoutManager(context)
         filmAdapter = FilmsAdapter({filmModel: FilmsModel ->deleteFilm(filmModel)},
-            {filmModel: FilmsModel -> editFilm(filmModel)})
-        binding?.recyclerFilms?.adapter = filmAdapter
+            {filmsModel: FilmsModel ->editFilm(filmsModel)})
+        binding?.recyclerFilter?.adapter = filmAdapter
 
-        displayFilms()
+        displayFilterFilms()
     }
 
-    private fun displayFilms(){
-        filmViewModel?.films?.observe(viewLifecycleOwner, Observer {
+    private fun displayFilterFilms(){
+        filmViewModel?.getFilter("боевик", "120")?.observe(viewLifecycleOwner, Observer {
             filmAdapter?.setList(it)
             filmAdapter?.notifyDataSetChanged()
         })
@@ -65,13 +63,13 @@ class TabFilms : Fragment() {
         filmViewModel?.deleteFilm(filmModel)
     }
 
-    private fun editFilm(filmModel: FilmsModel) {
+    private fun editFilm(filmsModel: FilmsModel) {
         val panelEditFilm = PanelEditFilm()
         val parameters = Bundle()
-        parameters.putString("idFilm", filmModel.id.toString())
-        parameters.putString("nameFilm", filmModel.name)
-        parameters.putString("categoryFilm", filmModel.category)
-        parameters.putString("priceFilm", filmModel.duration)
+        parameters.putString("idFilm", filmsModel.id.toString())
+        parameters.putString("nameFilm", filmsModel.name)
+        parameters.putString("categoryFilm", filmsModel.category)
+        parameters.putString("priceFilm", filmsModel.duration)
         panelEditFilm.arguments = parameters
 
         panelEditFilm.show((context as FragmentActivity).supportFragmentManager, "editFilm")

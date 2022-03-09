@@ -8,7 +8,7 @@ import com.example.roommoviemvvm.domain.repository.FilmsCall
 
 class FilmsRepository (private val filmDAO: FilmsDao) : FilmsCall {
 
-    override fun loadProducts(): LiveData<List<FilmsModel>> {
+    override fun loadFilms(): LiveData<List<FilmsModel>> {
         return filmDAO.getAllFilms()
     }
 

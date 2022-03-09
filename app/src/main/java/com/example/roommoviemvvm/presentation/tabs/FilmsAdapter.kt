@@ -1,4 +1,4 @@
-package com.example.roommoviemvvm.tabs
+package com.example.roommoviemvvm.presentation.tabs
 
 import android.view.LayoutInflater
 import android.view.View

@@ -4,12 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.roommoviemvvm.data.models.CategoryModel
 import com.example.roommoviemvvm.data.repositories.CategoryRepository
+import com.example.roommoviemvvm.domain.useCase.CategoriesUseCase
 
 import kotlinx.coroutines.launch
 
-class CategoryViewModel (private val categoriyRepository: CategoryRepository) : ViewModel() {
+class CategoryViewModel (private val categoriesUseCase: CategoriesUseCase) : ViewModel() {
 
-    val categories = categoriyRepository.categories
+    val categories = categoriesUseCase.loadCategories()
 
     fun startInsert(nameCategories: String) {
         insert(CategoryModel(0, nameCategories))
@@ -21,21 +22,21 @@ class CategoryViewModel (private val categoriyRepository: CategoryRepository) : 
 
     fun insert(categoryModel: CategoryModel) = viewModelScope.launch {
 
-        categoriyRepository.insertCategory(categoryModel)
+        categoriesUseCase.insertCategory(categoryModel)
     }
 
     fun updateProduct(categoryModel: CategoryModel) = viewModelScope.launch {
 
-        categoriyRepository.updateCategory(categoryModel)
+        categoriesUseCase.updateCategory(categoryModel)
     }
 
     fun delete(categoryModel: CategoryModel) = viewModelScope.launch {
 
-        categoriyRepository.deleteCategory(categoryModel)
+        categoriesUseCase.deleteCategory(categoryModel)
     }
 
     fun deleteAll() = viewModelScope.launch {
 
-        categoriyRepository.deleteAllCategories()
+        categoriesUseCase.deleteAllCategories()
     }
 }

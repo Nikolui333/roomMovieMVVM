@@ -1,4 +1,4 @@
-package com.example.roommoviemvvm.tabs
+package com.example.roommoviemvvm.presentation.tabs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
