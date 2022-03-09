@@ -16,13 +16,12 @@ import com.example.roommoviemvvm.viewModels.CategoryFactory
 import com.example.roommoviemvvm.viewModels.CategoryViewModel
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PanelEditCategory : BottomSheetDialogFragment(),View.OnKeyListener {
 
     private var binding: FragmentPanelEditCategoryBinding? = null
-    private var categoryRepository: CategoryRepository? = null
-    private var categoryViewModel: CategoryViewModel? = null
-    private var factory: CategoryFactory? = null
+    private val categoriesViewModel: CategoryViewModel by viewModel()
     private var idCategory:Int? = null
 
 
@@ -35,12 +34,6 @@ class PanelEditCategory : BottomSheetDialogFragment(),View.OnKeyListener {
 
         idCategory = arguments?.getString("idCategory")?.toInt()
         binding?.editCategory?.setText(arguments?.getString("nameCategory").toString())
-
-        val categoriesDao = MovieDatabase.getInstance((context as FragmentActivity).application).categoryDAO
-        categoryRepository = CategoryRepository(categoriesDao)
-        factory = CategoryFactory(categoryRepository!!)
-        categoryViewModel = ViewModelProvider(this,factory!!).get(CategoryViewModel::class.java)
-
         binding?.editCategory?.setOnKeyListener(this)
 
         return binding?.root
@@ -53,7 +46,7 @@ class PanelEditCategory : BottomSheetDialogFragment(),View.OnKeyListener {
             R.id.editCategory -> {
                 if (keyEvent.action == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
 
-                    categoryViewModel?.startUpdateProduct(idCategory.toString().toInt(), binding?.editCategory?.text?.toString()!!)
+                    categoriesViewModel?.startUpdateFilm(idCategory.toString().toInt(), binding?.editCategory?.text?.toString()!!)
 
                     binding?.editCategory?.setText("")
 

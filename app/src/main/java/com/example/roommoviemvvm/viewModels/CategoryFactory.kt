@@ -2,10 +2,9 @@ package com.example.roommoviemvvm.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.roommoviemvvm.viewModels.CategoryViewModel
-import com.example.roommoviemvvm.data.repositories.CategoryRepository
+import com.example.roommoviemvvm.domain.useCase.CategoriesUseCase
 
-class CategoryFactory (private val categoryRepository: CategoryRepository): ViewModelProvider.Factory {
+class CategoryFactory (private val categoryRepository: CategoriesUseCase): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(CategoryViewModel::class.java)){
             return CategoryViewModel(categoryRepository) as T

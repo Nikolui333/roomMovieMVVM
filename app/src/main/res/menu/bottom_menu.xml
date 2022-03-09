@@ -17,7 +17,7 @@
 
 
     <item
-        android:id="@+id/catalogProductsItemBottomNav"
+        android:id="@+id/catalogFilmsItemBottomNav"
         android:icon="@android:drawable/ic_menu_slideshow"
         android:title="@string/catalogFilms"
         app:showAsAction="ifRoom"/>

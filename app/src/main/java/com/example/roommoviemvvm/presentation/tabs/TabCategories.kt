@@ -17,11 +17,12 @@ import com.example.roommoviemvvm.data.repositories.CategoryRepository
 import com.example.roommoviemvvm.viewModels.CategoryFactory
 import com.example.roommoviemvvm.viewModels.CategoryViewModel
 import androidx.lifecycle.Observer
+import com.example.roommoviemvvm.domain.useCase.CategoriesUseCase
 
 class TabCategories : Fragment()  {
 
     private var binding: FragmentTabCategoriesBinding? = null
-    private var categoryRepository: CategoryRepository? = null
+    private var categoryRepository: CategoriesUseCase? = null
     private var categoryViewModel: CategoryViewModel? = null
     private var categoryFactory: CategoryFactory? = null
     private var categoryAdapter: CategoryAdapter? = null

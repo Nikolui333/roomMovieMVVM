@@ -15,14 +15,13 @@ import com.example.roommoviemvvm.data.repositories.FilmsRepository
 import com.example.roommoviemvvm.viewModels.FilmsFactory
 import com.example.roommoviemvvm.viewModels.FilmsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PanelEditFilm : BottomSheetDialogFragment(),View.OnKeyListener, View.OnClickListener {
 
     private var binding: FragmentPanelEditFilmBinding? = null
-    private var productRepository: FilmsRepository? = null
-    private var productViewModel: FilmsViewModel? = null
-    private var factory: FilmsFactory? = null
-    private var idProduct:Int? = null
+    private val filmsViewModel: FilmsViewModel by viewModel()
+    private var idFilm:Int? = null
 
 
     override fun onCreateView(
@@ -32,16 +31,12 @@ class PanelEditFilm : BottomSheetDialogFragment(),View.OnKeyListener, View.OnCli
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_panel_edit_film, container, false)
 
-        idProduct = arguments?.getString("idFilm")?.toInt()
+        idFilm = arguments?.getString("idFilm")?.toInt()
         binding?.editNameFilm?.setText(arguments?.getString("nameFilm").toString())
         binding?.editCategoryFilm?.setText(arguments?.getString("categoryFilm").toString())
         binding?.editDurationFilm?.setText(arguments?.getString("priceFilm").toString())
 
-
-        val productDao = MovieDatabase.getInstance((context as FragmentActivity).application).filmsDAO
-        productRepository = FilmsRepository(productDao)
-        factory = FilmsFactory(productRepository!!)
-        productViewModel = ViewModelProvider(this, factory!!).get(FilmsViewModel::class.java)
+      //  filmsViewModel = ViewModelProvider(this, factory!!).get(FilmsViewModel::class.java)
 
         binding?.editNameFilm?.setOnKeyListener(this)
         binding?.editCategoryFilm?.setOnKeyListener(this)
@@ -95,8 +90,8 @@ class PanelEditFilm : BottomSheetDialogFragment(),View.OnKeyListener, View.OnCli
     }
 
     override fun onClick(view: View) {
-        productViewModel?.startUpdateFilm(idProduct.toString().toInt(), binding?.resEditNameFilm?.text?.toString()!!,
-            binding?.resEditCategoryFilm?.text?.toString()!!, binding?.resEditDurationFilm?.text?.toString()!!)
+/*        filmsViewModel?.startUpdateFilm(idFilm.toString().toInt(), binding?.resEditNameFilm?.text?.toString()!!,
+            binding?.resEditCategoryFilm?.text?.toString()!!, binding?.resEditDurationFilm?.text?.toString()!!)*/
 
         dismiss()
 

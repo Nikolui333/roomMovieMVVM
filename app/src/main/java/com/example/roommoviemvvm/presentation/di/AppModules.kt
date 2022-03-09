@@ -31,7 +31,7 @@ val moduleCategories = module{
 
 }
 
-val moduleProducts = module{
+val moduleFilms = module{
 
     single {
         Room.databaseBuilder(androidContext(), MovieDatabase::class.java,
@@ -53,7 +53,7 @@ val moduleDBFilms = module{
 
     single {
         Room.databaseBuilder(androidContext(), MovieDatabase::class.java,
-            "dbProducts").build()
+            "dbFilms").build()
     }
 
     single { get<MovieDatabase>().filmsDAO }
